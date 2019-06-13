@@ -1,16 +1,31 @@
 <my-navbar></my-navbar>
 
-<table class="table">
+<table class="table" *ngIf="showAllMedecin">
     <thead>
         <tr>
             <th>Nom</th>
             <th>Prénom</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let medecin of lesMedecins">
             <td>{{ medecin.nom }}</td>
             <td>{{ medecin.prenom }}</td>
+            <td (click)="editMedecin(medecin)">Actions</td>
         </tr>
     </tbody>
 </table>
+
+<form *ngIf="!showAllMedecin" (ngSubmit)="updateMedecin()">
+    <h2>Médecin : {{ medecin.nom }} {{ medecin.prenom }}</h2>
+    <p>
+        Adresse : {{ medecin.adresse }}<br>
+        Spécialiste : {{ medecin.specialitecomplementaire }}
+    </p>
+
+    <label for="telephone">Numéro de téléphone</label>
+    <input id="telephone" [(ngModel)]="telephone" name="telephone" type="text">
+
+    <button>Enregistrer le numéro de téléphone</button>
+</form>

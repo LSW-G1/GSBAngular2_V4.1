@@ -60,6 +60,17 @@ var DataService = /** @class */ (function () {
         var req = this.http.get(url);
         return req;
     };
+    /**
+     * Envoie une requête au service REST pour modifier le numéro de téléphone du médecin
+     * @param {string} idMedecin
+     * @param {string} telephone
+     * @returns {Observable<Response>}
+     */
+    DataService.prototype.updateMedecinTelephone = function (idMedecin, telephone) {
+        var url = this.urlDomaine + "/test_updateMedecinTelephone?idMedecin=" + idMedecin + "&telephone=" + telephone;
+        var req = this.http.get(url);
+        return req;
+    };
     DataService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http])

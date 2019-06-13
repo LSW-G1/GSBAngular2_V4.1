@@ -14,15 +14,43 @@ var app_service_data_1 = require("../services/app.service.data");
 var TestComponent = /** @class */ (function () {
     function TestComponent(dataService) {
         this.dataService = null;
+        this.showAllMedecin = true;
         this.dataService = dataService;
         this.chartgeToutrLesMedecins();
     }
+    /**
+     * Charge tout les médecins depuis le service REST
+     */
     TestComponent.prototype.chartgeToutrLesMedecins = function () {
         var _this = this;
         this.dataService.chargerMedecins("").subscribe(function (data) {
             _this.lesMedecins = data;
         }, function (error) {
             console.error(error);
+        });
+    };
+    /**
+     * Affiche les informations sur un médecin
+     * @param medecin
+     */
+    TestComponent.prototype.editMedecin = function (medecin) {
+        console.log("EDITING ...", medecin);
+        this.medecin = medecin;
+        this.telephone = medecin.tel;
+        this.showAllMedecin = false;
+    };
+    /**
+     * Met à jour les données du médecin
+     */
+    TestComponent.prototype.updateMedecin = function () {
+        var _this = this;
+        console.log("UPDATING...");
+        this.dataService.updateMedecinTelephone(this.medecin.id, this.telephone).subscribe(function (data) {
+            console.log(data);
+            _this.chartgeToutrLesMedecins();
+            _this.showAllMedecin = true;
+        }, function (error) {
+            console.log(error);
         });
     };
     TestComponent = __decorate([

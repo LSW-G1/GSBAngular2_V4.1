@@ -8,4 +8,24 @@ import { DataService } from "../services/app.service.data"
 })
 
 export class TestComponent {
+
+    dataService : DataService = null
+    lesMedecins : any
+
+
+
+    constructor(dataService: DataService) {
+        this.dataService = dataService
+
+        this.chartgeToutrLesMedecins()
+    }
+
+    chartgeToutrLesMedecins() {
+        this.dataService.chargerMedecins("").subscribe((data) => {
+            this.lesMedecins = data
+        }, (error) => {
+            console.error(error)
+        })
+    }
+
 }

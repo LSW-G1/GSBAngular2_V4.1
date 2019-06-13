@@ -1,1 +1,16 @@
 <my-navbar></my-navbar>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let medecin of lesMedecins">
+            <td>{{ medecin.nom }}</td>
+            <td>{{ medecin.prenom }}</td>
+        </tr>
+    </tbody>
+</table>

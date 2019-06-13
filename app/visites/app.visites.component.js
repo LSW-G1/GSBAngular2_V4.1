@@ -25,8 +25,7 @@ var VisitesComponent = /** @class */ (function () {
     }
     VisitesComponent.prototype.chargerMedecins = function () {
         var _this = this;
-        this.dataService.chargerMedecins(this.nomMedecin)
-            .subscribe(function (data) {
+        this.dataService.chargerMedecins(this.nomMedecin).subscribe(function (data) {
             _this.lesMedecins = data;
         }, function (error) { });
     };
@@ -47,7 +46,8 @@ var VisitesComponent = /** @class */ (function () {
     VisitesComponent.prototype.chargerVisites = function () {
         var _this = this;
         this.titre = "Médecins visité(s) ce jour :";
-        this.dataService.chargerRapportsAuneDate(this.dataService.visiteur.id, this.dateVisite)
+        this.dataService
+            .chargerRapportsAuneDate(this.dataService.visiteur.id, this.dateVisite)
             .subscribe(function (data) {
             _this.lesRapports = data;
         }, function (error) { });
@@ -59,7 +59,8 @@ var VisitesComponent = /** @class */ (function () {
     VisitesComponent.prototype.valider = function () {
         var _this = this;
         console.log(this.rapport);
-        this.dataService.majRapport(this.rapport.idRapport, this.rapport.motif, this.rapport.bilan)
+        this.dataService
+            .majRapport(this.rapport.idRapport, this.rapport.motif, this.rapport.bilan)
             .subscribe(function (data) {
             _this.typeMessage = "alert alert-success";
             _this.messageMAJ = "Mise à jour effectuée";
@@ -85,10 +86,8 @@ var VisitesComponent = /** @class */ (function () {
     };
     VisitesComponent.prototype.chargerMedicaments = function () {
         var _this = this;
-        this.dataService.chargerMedicaments(this.nomMedicament)
-            .subscribe(function (data) {
-            _this.lesMedicaments
-                = data;
+        this.dataService.chargerMedicaments(this.nomMedicament).subscribe(function (data) {
+            _this.lesMedicaments = data;
         }, function (error) { });
     };
     VisitesComponent.prototype.choisirMedicament = function (medicament) {
@@ -97,7 +96,11 @@ var VisitesComponent = /** @class */ (function () {
         this.lesMedicaments = null;
     };
     VisitesComponent.prototype.ajouter = function () {
-        this.medicamentsSelect.push({ id: this.medicamentSelect.id, nom: this.medicamentSelect.nomCommercial, qte: this.qteSelect });
+        this.medicamentsSelect.push({
+            id: this.medicamentSelect.id,
+            nom: this.medicamentSelect.nomCommercial,
+            qte: this.qteSelect
+        });
         this.nomMedicament = "";
     };
     VisitesComponent.prototype.retirer = function () {
@@ -105,9 +108,8 @@ var VisitesComponent = /** @class */ (function () {
     };
     VisitesComponent.prototype.enregistrer = function () {
         var _this = this;
-        console.log(this.dateNouveauRapport);
-        console.log(this.medicamentsSelect);
-        this.dataService.enregistrerRapport(this.dataService.visiteur.id, this.medecin.id, this.motif, this.dateNouveauRapport, this.bilan, this.medicamentsSelect)
+        this.dataService
+            .enregistrerRapport(this.dataService.visiteur.id, this.medecin.id, this.motif, this.dateNouveauRapport, this.bilan, this.medicamentsSelect)
             .subscribe(function (data) {
             _this.typeMessage = "alert alert-success";
             _this.messageEnregistrement = "Enregistrement effectué";
@@ -119,8 +121,8 @@ var VisitesComponent = /** @class */ (function () {
     VisitesComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-visites',
-            templateUrl: 'app.visites.html'
+            selector: "my-visites",
+            templateUrl: "app.visites.html"
         }),
         __metadata("design:paramtypes", [app_service_data_1.DataService])
     ], VisitesComponent);

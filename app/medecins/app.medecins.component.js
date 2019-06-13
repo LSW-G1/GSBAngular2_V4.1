@@ -23,8 +23,7 @@ var MedecinsComponent = /** @class */ (function () {
     }
     MedecinsComponent.prototype.charger = function () {
         var _this = this;
-        this.dataService.chargerMedecins(this.nomMedecin)
-            .subscribe(function (data) {
+        this.dataService.chargerMedecins(this.nomMedecin).subscribe(function (data) {
             _this.lesMedecins = data;
         }, function (error) { });
     };
@@ -40,8 +39,7 @@ var MedecinsComponent = /** @class */ (function () {
         var _this = this;
         this.afficherRapports = true;
         this.afficherMedecin = false;
-        this.dataService.chargerRapports(this.medecin.id)
-            .subscribe(function (data) {
+        this.dataService.chargerRapports(this.medecin.id).subscribe(function (data) {
             _this.lesRapports = data;
         }, function (error) { });
     };
@@ -53,16 +51,19 @@ var MedecinsComponent = /** @class */ (function () {
     MedecinsComponent.prototype.valider = function () {
         var _this = this;
         this.afficherMessage = true;
-        this.dataService.majMedecin(this.medecin.id, this.medecin.adresse, this.medecin.tel, this.medecin.specialitecomplementaire)
+        this.dataService
+            .majMedecin(this.medecin.id, this.medecin.adresse, this.medecin.tel, this.medecin.specialitecomplementaire)
             .subscribe(function (data) {
             _this.lblMessage = "Enregistrement effectué";
-        }, function (error) { _this.lblMessage = "Merci de réessayer plus tard"; });
+        }, function (error) {
+            _this.lblMessage = "Merci de réessayer plus tard";
+        });
     };
     MedecinsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-medecins',
-            templateUrl: 'app.medecins.html'
+            selector: "my-medecins",
+            templateUrl: "app.medecins.html"
         }),
         __metadata("design:paramtypes", [app_service_data_1.DataService])
     ], MedecinsComponent);

@@ -25,11 +25,10 @@ var ConnexionComponent = /** @class */ (function () {
     }
     ConnexionComponent.prototype.valider = function () {
         var _this = this;
-        this.dataService.connexion(this.login, this.mdp)
-            .subscribe(function (data) {
+        this.dataService.connexion(this.login, this.mdp).subscribe(function (data) {
             _this.visiteur = data;
             _this.dataService.visiteur = data; // ajouté pour récupérer le visiteur dans la gestion des rapports
-            _this.router.navigate(['accueil']);
+            _this.router.navigate(["accueil"]);
         }, function (error) {
             _this.estCache = false;
             _this.lblMessage = "erreur";
@@ -38,9 +37,9 @@ var ConnexionComponent = /** @class */ (function () {
     ConnexionComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-connexion',
-            templateUrl: 'app.connexion.html',
-            styleUrls: ['app.connexion.css'],
+            selector: "my-connexion",
+            templateUrl: "app.connexion.html",
+            styleUrls: ["app.connexion.css"]
         }),
         __metadata("design:paramtypes", [router_1.Router, app_service_data_1.DataService])
     ], ConnexionComponent);

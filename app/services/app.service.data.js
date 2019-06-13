@@ -19,59 +19,45 @@ var DataService = /** @class */ (function () {
     }
     DataService.prototype.connexion = function (loginIn, mdpIn) {
         var url = this.urlDomaine + "/connexion?login=" + loginIn + "&mdp=" + mdpIn;
-        var req = this.http
-            .get(url)
-            .map(function (r) { return r.json(); });
+        var req = this.http.get(url).map(function (r) { return r.json(); });
         return req;
     };
     DataService.prototype.chargerMedecins = function (nomMedecin) {
         var url = this.urlDomaine + "/medecins?nom=" + nomMedecin;
-        var req = this.http
-            .get(url)
-            .map(function (r) { return r.json(); });
+        var req = this.http.get(url).map(function (r) { return r.json(); });
         return req;
     };
     DataService.prototype.chargerRapports = function (idMedecin) {
         var url = this.urlDomaine + "/rapports/" + idMedecin;
-        var req = this.http
-            .get(url)
-            .map(function (r) { return r.json(); });
+        var req = this.http.get(url).map(function (r) { return r.json(); });
         return req;
     };
     DataService.prototype.majMedecin = function (id, adresse, tel, spe) {
-        var url = this.urlDomaine + "/majmedecin?idmedecin=" + id + "&adresse=";
-        url += adresse + "&tel=" + tel + "&specialite=" + spe;
-        var req = this.http
-            .get(url);
+        var url = this.urlDomaine + "/majmedecin?idmedecin=" + id + "&adresse=" + adresse + "&tel=" + tel + "&specialite=" + spe;
+        var req = this.http.get(url);
         return req;
     };
     DataService.prototype.chargerRapportsAuneDate = function (idVisiteur, date) {
         var url = this.urlDomaine + "/rapports_a_date?idVisiteur=" + idVisiteur + "&date=" + date;
-        var req = this.http
-            .get(url)
-            .map(function (r) { return r.json(); });
+        var req = this.http.get(url).map(function (r) { return r.json(); });
         return req;
     };
     DataService.prototype.majRapport = function (idRapport, motif, bilan) {
-        var url = this.urlDomaine + "/majrapport?idRapport=" + idRapport + "&motif=";
-        url += motif + "&bilan=" + bilan;
-        var req = this.http
-            .get(url);
+        var url = this.urlDomaine + "/majrapport?idRapport=" + idRapport + "&motif=" + motif + "&bilan=" + bilan;
+        var req = this.http.get(url);
         return req;
     };
     DataService.prototype.chargerMedicaments = function (nom) {
         var url = this.urlDomaine + "/medicaments?nom=" + nom;
-        var req = this.http
-            .get(url)
-            .map(function (r) { return r.json(); });
+        var req = this.http.get(url).map(function (r) { return r.json(); });
         return req;
     };
     DataService.prototype.enregistrerRapport = function (idVisiteur, idMedecin, motif, date, bilan, lesMedicaments) {
-        var url = this.urlDomaine + "/nouveaurapport?idVisiteur=" + idVisiteur + "&motif=";
-        url += motif + "&bilan=" + bilan + "&idMedecin=" + idMedecin + "&date=" + date;
-        lesMedicaments.forEach(function (med) { url += "&medicaments[" + med.id + "]=" + med.qte; });
-        var req = this.http
-            .get(url);
+        var url = this.urlDomaine + "/nouveaurapport?idVisiteur=" + idVisiteur + "&motif=" + motif + "&bilan=" + bilan + "&idMedecin=" + idMedecin + "&date=" + date;
+        lesMedicaments.forEach(function (med) {
+            url += "&medicaments[" + med.id + "]=" + med.qte;
+        });
+        var req = this.http.get(url);
         return req;
     };
     DataService = __decorate([
